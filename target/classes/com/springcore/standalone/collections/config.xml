@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans     
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security  
+       http://www.springframework.org/schema/security/spring-security.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   
+  <!--  to enable all annotations -->
+	<context:annotation-config />
+	
+	<!-- stand alone collections -->
+	
+	<util:list list-class="java.util.LinkedList" id="flatmates">
+	<value> Nilesh</value>
+	<value> Avichal</value>
+	<value> Ritanshu</value>
+	<value> Vishal</value>
+	<value> Avanish</value>
+	<value> Abhisekh</value>
+	</util:list>
+	
+	
+	<util:map map-class="java.util.HashMap" id="rent">
+	<entry key="room1" value="3000"/>
+	<entry key="room2" value="3500"/>
+	<entry key="room3" value="2500"/>
+	
+	</util:map>
+    
+    
+    <util:properties id="dbconfig">
+    <prop key="driver">com.mysql.jdbc.Driver</prop>
+    <prop key="username">s</prop>
+    <prop key="password">password_123</prop>
+    <prop key="url">mysql:jdbc://localhost:8080/database</prop>
+    </util:properties>
+      
+
+	<!-- bean definitions here -->
+	
+	
+	<bean class="com.springcore.standalone.collections.Person" name="person1">
+	<property name="friends">
+	<ref bean="flatmates"/>
+	</property>
+	<property name="roomRent">
+	<ref bean="rent"/>
+	</property>
+	<property name="properties" ref="dbconfig" />
+	</bean>
+
+
+
+</beans>
